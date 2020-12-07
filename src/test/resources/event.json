@@ -5,7 +5,8 @@
   "httpMethod": "POST",
   "isBase64Encoded": false,
   "queryStringParameters": {
-    "foo": "bar"
+    "source": "https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md",
+    "name": "sample.svg"
   },
   "pathParameters": {
     "proxy": "/path/to/resource"
