@@ -10,7 +10,13 @@ def handler(event, context):
             if param not in params:
                 raise ValueError(f'Missing required parameter: {param}')
 
-        response = requests.get(params['source'])
+        headers = {}
+        if 'token' in params:
+            headers = {
+                'Authorization': f"token {params['token']}"
+            }
+
+        response = requests.get(params['source'], headers=headers)
 
         text = response.text
         name = f"@{params['name']}"

@@ -15,7 +15,8 @@ To insert inline image in your markdown follow steps:
     ```
     where 
     - `source` - is link to itself markdown file;
-    - `name` - marker for specify the picture.
+    - `name` - marker for specify the picture;
+    - `token` - (optional) github personal access token for private projects (required `repo` scope).
     > **_NOTE:_**  Api Gateway deployed in my own AWS account, and I do not guarantee that host `https://d1pnzy5wce.execute-api.us-east-1.amazonaws.com` will always work.
 3. Now you need include SVG file into markdown file, and insert at beginning and end marker name that start with `@` symbol.
     ```
