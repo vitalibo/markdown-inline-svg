@@ -6,7 +6,7 @@ Simple way for build-in SVG image in your readme file.
 
 To insert inline image in your markdown follow this sample:
 
-    ![sample](https://oi3r8doz74.execute-api.us-east-1.amazonaws.com/Prod/svg?source=https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md&name=sample.svg)
+    ![sample](https://d1pnzy5wce.execute-api.us-east-1.amazonaws.com/Prod/svg?source=https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md&name=sample.svg)
     
     <details> 
     <summary>SVG code</summary>
@@ -28,7 +28,7 @@ To insert inline image in your markdown follow this sample:
 
 ### Example
 
-![AwsDiagram](https://oi3r8doz74.execute-api.us-east-1.amazonaws.com/Prod/svg?source=https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md&name=aws.svg)
+![AwsDiagram](https://d1pnzy5wce.execute-api.us-east-1.amazonaws.com/Prod/svg?source=https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md&name=aws.svg)
 
 <details> 
 <summary>SVG code</summary>
@@ -506,8 +506,8 @@ To use the SAM CLI, you need the following tools.
 To build and deploy your application for the first time, run the following in your shell:
 
 ```bash
-sam build --use-container
-sam deploy --guided
+sam build --use-container --template infrastructure/template.yaml
+sam deploy --guided --config-file infrastructure/samconfig.toml
 ```
 
 The first command will build the source of your application. The second command will package and deploy your application to AWS, with a series of prompts:
