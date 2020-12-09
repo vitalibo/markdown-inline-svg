@@ -1,14 +1,34 @@
 # Markdown inline SVG
 
-Simple way for build-in SVG image in your readme file.
+Simple way for build-in SVG image in your Markdown file.
 
 [![Build Status](https://travis-ci.org/vitalibo/markdown-inline-svg.svg?branch=master)](https://travis-ci.org/vitalibo/markdown-inline-svg)
 
 ## Usage
 
-To insert inline image in your markdown follow this sample:
+To insert inline image in your markdown follow steps:
 
-    ![sample](https://d1pnzy5wce.execute-api.us-east-1.amazonaws.com/Prod/svg?source=https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md&name=sample.svg)
+1. Create vector diagram or picture using for example [draw.io](https://draw.io) and save as SVG file.
+2. Insert link to image in your markdown file.
+    ```
+    ![alt text](https://d1pnzy5wce.execute-api.us-east-1.amazonaws.com/Prod/svg?source=https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md&name=sample.svg)
+    ```
+    where 
+    - `source` - is link to itself markdown file;
+    - `name` - marker for specify the picture.
+    > **_NOTE:_**  Api Gateway deployed in my own AWS account, and I do not guarantee that host `https://d1pnzy5wce.execute-api.us-east-1.amazonaws.com` will always work.
+3. Now you need include SVG file into markdown file, and insert at beginning and end marker name that start with `@` symbol.
+    ```
+    @sample.svg
+    ... insert your svg here ...
+    @sample.svg
+    ```
+4. Also, github support html tag `details`, that you can specify for open or close SVG code on demand that improve readability.
+
+Full code look like follow sample:
+
+
+    ![alt text](https://d1pnzy5wce.execute-api.us-east-1.amazonaws.com/Prod/svg?source=https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md&name=sample.svg)
     
     <details> 
     <summary>SVG code</summary>
