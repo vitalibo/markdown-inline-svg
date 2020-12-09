@@ -2,6 +2,8 @@
 
 Simple way for build-in SVG image in your readme file.
 
+[![Build Status](https://travis-ci.org/vitalibo/markdown-inline-svg.svg?branch=master)](https://travis-ci.org/vitalibo/markdown-inline-svg)
+
 ## Usage
 
 To insert inline image in your markdown follow this sample:
