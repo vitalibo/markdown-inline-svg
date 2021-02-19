@@ -8,7 +8,7 @@ app = importlib.import_module('src.main.python.lambda')
 
 @pytest.fixture()
 def apigw_event():
-    ''' Generates API GW Event'''
+    """ Generates API GW Event"""
 
     return {
         'body': '{ "test": "body"}',
@@ -67,7 +67,7 @@ def apigw_event():
 def test_handler_ok(apigw_event, mocker):
     apigw_event['queryStringParameters'] = {
         'source': 'https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md',
-        'name': 'sample.svg'
+        'name': 'aws.svg'
     }
 
     ret = app.handler(apigw_event, '')
@@ -81,7 +81,7 @@ def test_handler_ok(apigw_event, mocker):
 
 def test_handler_bad_request_missing_param_source(apigw_event, mocker):
     apigw_event['queryStringParameters'] = {
-        'name': 'sample.svg'
+        'name': 'aws.svg'
     }
 
     ret = app.handler(apigw_event, '')
@@ -106,7 +106,7 @@ def test_handler_bad_request_missing_param_name(apigw_event, mocker):
 def test_handler_bad_request_incorrect_schema(apigw_event, mocker):
     apigw_event['queryStringParameters'] = {
         'source': 'foo',
-        'name': 'sample.svg'
+        'name': 'aws.svg'
     }
 
     ret = app.handler(apigw_event, '')
@@ -119,7 +119,7 @@ def test_handler_bad_request_incorrect_schema(apigw_event, mocker):
 def test_handler_internal_server_error(apigw_event, mocker):
     apigw_event['queryStringParameters'] = {
         'source': 'https://foo',
-        'name': 'sample.svg'
+        'name': 'aws.svg'
     }
 
     ret = app.handler(apigw_event, '')
