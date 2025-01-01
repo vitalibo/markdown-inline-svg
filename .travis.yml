@@ -1,9 +1,0 @@
-language: python
-python:
-  - "3.8"
-
-install:
-  - pip install -r src/main/python/requirements.txt -r src/test/python/requirements.txt
-
-script:
-  - python -m pytest src/test/python/ -v

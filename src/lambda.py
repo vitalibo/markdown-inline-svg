@@ -1,6 +1,6 @@
 import json
-
-import requests
+import urllib.error
+import urllib.request
 
 
 def handler(event, context):
@@ -16,9 +16,10 @@ def handler(event, context):
                 'Authorization': f"token {params['token']}"
             }
 
-        response = requests.get(params['source'], headers=headers)
+        request = urllib.request.Request(params['source'], headers=headers)
+        with urllib.request.urlopen(request) as response:
+            text = response.read().decode('utf-8')
 
-        text = response.text
         name = f"@{params['name']}"
         body = text[text.find(name) + len(name):text.rfind(name)].strip()
 
@@ -30,7 +31,7 @@ def handler(event, context):
             }
         }
 
-    except (ValueError, requests.RequestException) as e:
+    except Exception as e:
         return {
             'statusCode': 400 if isinstance(e, ValueError) else 500,
             'body': json.dumps({

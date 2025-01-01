@@ -7,9 +7,9 @@ Resources:
   Function:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: ../src/main/python
+      CodeUri: src
       Handler: lambda.handler
-      Runtime: python3.8
+      Runtime: python3.13
       Timeout: 3
       Events:
         HttpRequest:
