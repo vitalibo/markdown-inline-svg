@@ -73,7 +73,8 @@ class TestLambda(unittest.TestCase):
 
         assert ret['statusCode'] == 500
         data = json.loads(ret["body"])
-        assert 'nodename nor servname provided, or not known' in data['message']
+        assert 'nodename nor servname provided, or not known' in data['message'] \
+               or 'Temporary failure in name resolution' in data['message']
 
 
 if __name__ == '__main__':
