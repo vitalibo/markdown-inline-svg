@@ -2,7 +2,7 @@
 
 Simple way for build-in SVG image in your Markdown file.
 
-[![Build Status](https://travis-ci.org/vitalibo/markdown-inline-svg.svg?branch=master)](https://travis-ci.org/vitalibo/markdown-inline-svg)
+![status](https://github.com/vitalibo/markdown-inline-svg/actions/workflows/ci.yaml/badge.svg)
 
 ## Usage
 
