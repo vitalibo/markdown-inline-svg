@@ -11,13 +11,13 @@ To insert inline image in your Markdown, follow steps:
 1. Create vector diagram or picture using, for example, [draw.io](https://draw.io) and save as the SVG file.
 2. Insert a link to image in your Markdown file.
     ```
-    ![alt text](https://fwtbbmf399.execute-api.us-east-1.amazonaws.com/Prod/svg?source=https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md&name=sample.svg)
+    ![alt text](https://markdown-inline-svg.vitalibo.click/svg?source=https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md&name=sample.svg)
     ```
    where
     - `source` - is link to itself markdown file;
     - `name` - marker for specify the picture;
     - `token` - (optional) GitHub personal access token for private projects (required `repo` scope).
-   > **_NOTE:_** Api Gateway deployed in my own AWS account, and I do not guarantee that host `https://fwtbbmf399.execute-api.us-east-1.amazonaws.com` will always work.
+   > **_NOTE:_** Api Gateway deployed in my own AWS account, and I do not guarantee that host `https://markdown-inline-svg.vitalibo.click` will always work.
 3. Now you need include the SVG file in a Markdown file, and insert at beginning and end marker name that start with `@`
    symbol.
     ```
@@ -30,7 +30,7 @@ To insert inline image in your Markdown, follow steps:
 
 Full code looks like follow sample:
 
-    ![alt text](https://fwtbbmf399.execute-api.us-east-1.amazonaws.com/Prod/svg?source=https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md&name=sample.svg)
+    ![alt text](https://markdown-inline-svg.vitalibo.click/svg?source=https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md&name=sample.svg)
     
     <details> 
     <summary>SVG code</summary>
@@ -52,7 +52,7 @@ Full code looks like follow sample:
 
 ### Example
 
-![AwsDiagram](https://fwtbbmf399.execute-api.us-east-1.amazonaws.com/Prod/svg?source=https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md&name=aws.svg)
+![AwsDiagram](https://markdown-inline-svg.vitalibo.click/svg?source=https://raw.githubusercontent.com/vitalibo/markdown-inline-svg/master/readme.md&name=aws.svg)
 
 <details> 
 <summary>SVG code</summary>

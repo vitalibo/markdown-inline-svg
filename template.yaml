@@ -1,7 +1,23 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: >
-  Create necessary resources for markdown-inline-svg project.
+Description: "AWS SAM template for the Markdown Inline SVG"
+
+Parameters:
+  DomainName:
+    Type: String
+    Description: "Custom domain name for the API Gateway"
+    Default: ""
+  HostedZoneId:
+    Type: String
+    Description: "Hosted Zone ID"
+    Default: ""
+  RegionalCertificateArn:
+    Type: String
+    Description: "ARN of the ACM certificate"
+    Default: ""
+
+Conditions:
+  HasDomainName: !Not [ !Equals [ !Ref DomainName, "" ] ]
 
 Resources:
   Function:
@@ -18,13 +34,42 @@ Resources:
             Path: /svg
             Method: get
 
+
+  Route53RecordSet:
+    Condition: HasDomainName
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Sub "${DomainName}."
+      Type: A
+      AliasTarget:
+        DNSName: !GetAtt ApiGatewayDomainName.RegionalDomainName
+        EvaluateTargetHealth: false
+        HostedZoneId: !GetAtt ApiGatewayDomainName.RegionalHostedZoneId
+
+  ApiGatewayDomainName:
+    Condition: HasDomainName
+    Type: AWS::ApiGateway::DomainName
+    Properties:
+      DomainName: !Ref DomainName
+      RegionalCertificateArn: !Ref RegionalCertificateArn
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+      SecurityPolicy: TLS_1_2
+
+  ApiGatewayBasePathMapping:
+    Condition: HasDomainName
+    Type: AWS::ApiGateway::BasePathMapping
+    Properties:
+      DomainName: !Ref ApiGatewayDomainName
+      RestApiId: !Ref ServerlessRestApi
+      Stage: Prod
+
 Outputs:
-  Api:
-    Description: "API Gateway endpoint URL for Prod stage for function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/svg/"
-  Function:
-    Description: "Lambda Function ARN"
-    Value: !GetAtt Function.Arn
-  FunctionIamRole:
-    Description: "Implicit IAM Role created for function"
-    Value: !GetAtt Function.Arn
+  RestApi:
+    Description: "API Gateway endpoint URL"
+    Value: !If
+      - HasDomainName
+      - !Sub "https://${DomainName}/svg"
+      - !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/svg"
